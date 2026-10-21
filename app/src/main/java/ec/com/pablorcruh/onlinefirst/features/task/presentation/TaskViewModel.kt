@@ -72,6 +72,15 @@ class TaskViewModel @Inject constructor(
             is TaskEvent.Toogle -> toogleIsCompleted(event.id)
             is TaskEvent.DeleteTask -> deleteTask(event.id)
             is TaskEvent.OnEdit -> onEdit(event.id)
+            TaskEvent.ClearEditInformation -> {
+                uiState = uiState.copy(
+                    isEdit = false,
+                    editedTask = null,
+                    title = "",
+                    description = ""
+                )
+
+            }
         }
     }
 

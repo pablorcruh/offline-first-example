@@ -15,4 +15,6 @@ sealed interface TaskEvent {
     data class OnDescriptionChange(val description: String): TaskEvent
 
     data class OnEdit(val id:String): TaskEvent
+
+    data object ClearEditInformation: TaskEvent
 }
