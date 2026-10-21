@@ -7,7 +7,7 @@ interface TaskRepository {
 
     fun observeTasks(): Flow<List<Task>>
 
-    fun findById(id: String): Task?
+    suspend fun findById(id: String): Task?
 
     fun observePendingSyncCount(): Flow<Int>
 

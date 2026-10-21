@@ -26,7 +26,7 @@ import ec.com.pablorcruh.onlinefirst.features.task.data.sync.SyncMetaDataEntity
 import java.util.concurrent.TimeUnit
 
 @HiltWorker
-class SyncWork @AssistedInject constructor(
+class SyncWorker @AssistedInject constructor(
     private val taskDao: TaskDao,
     private val api: ApiService,
     private val appDataBase: AppDatabase,
@@ -123,8 +123,8 @@ class SyncWork @AssistedInject constructor(
     }
 
     object SyncScheduler{
-        fun ScheduleTask(context: Context){
-            val request = OneTimeWorkRequestBuilder<SyncWork>()
+        fun scheduleTask(context: Context){
+            val request = OneTimeWorkRequestBuilder<SyncWorker>()
                 .setConstraints(
                     Constraints.Builder()
                         .setRequiredNetworkType(NetworkType.CONNECTED)
