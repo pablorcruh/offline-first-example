@@ -8,5 +8,5 @@ data class SyncMetaDataEntity(
 
     @PrimaryKey(autoGenerate = false)
     val id:Int =1,
-    val nextCursor: Int
+    val lastCursor: Int
 )

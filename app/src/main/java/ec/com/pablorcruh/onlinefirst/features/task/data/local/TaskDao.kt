@@ -7,6 +7,7 @@ import androidx.room.Upsert
 import ec.com.pablorcruh.onlinefirst.coreUtils.SyncStatus
 import ec.com.pablorcruh.onlinefirst.features.task.data.local.entities.TaskEntity
 import ec.com.pablorcruh.onlinefirst.features.task.data.sync.SyncMetaDataEntity
+import ec.com.pablorcruh.onlinefirst.features.task.domain.models.Task
 import kotlinx.coroutines.flow.Flow
 
 @Dao
@@ -21,6 +22,9 @@ interface TaskDao {
 
     @Query("SELECT COUNT(*) FROM task WHERE syncStatus = 'PENDING_DELETE'")
     fun observePendingSyncCount(): Flow<Int>
+
+    @Query("SELECT * FROM task WHERE syncStatus != 'SYNC' LIMIT :limit")
+    suspend fun getPendingTasks(limit: Int): List<TaskEntity>
 
     @Upsert
     suspend fun upsert(task: TaskEntity)
